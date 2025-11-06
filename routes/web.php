@@ -42,4 +42,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/kontak', [App\Http\Controllers\Admin\ContactController::class, 'index'])->name('admin.contact');
     Route::get('/kontak/{id}', [App\Http\Controllers\Admin\ContactController::class, 'show'])->name('admin.contact.show');
     Route::delete('/kontak/{id}', [App\Http\Controllers\Admin\ContactController::class, 'destroy'])->name('admin.contact.destroy');
+
+
 });
+
+$nama = 'dika';
+Route::view('/test', 'contoh.contohfile', [
+    'nama' => $nama
+]);
