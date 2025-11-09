@@ -62,8 +62,9 @@
     <!-- Hero Section -->
     <section class="relative h-[70vh] flex items-center justify-center">
         <!-- Background Image dengan Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-blue-600 opacity-90">
-            <div class="w-full h-full bg-gradient-to-r from-black/40 to-black/20"></div>
+        <div class="absolute inset-0">
+            <img src="{{ asset('monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" alt="Tasty Food Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
         </div>
 
         <!-- Hero Content -->
@@ -96,11 +97,11 @@
 
                 <!-- Images Grid -->
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="aspect-square bg-gradient-to-br from-green-200 to-blue-200 rounded-2xl shadow-md flex items-center justify-center">
-                        <span class="text-gray-500">Food Image 1</span>
+                    <div class="aspect-square rounded-2xl shadow-md overflow-hidden">
+                        <img src="{{ asset('brooke-lark-oaz0raysASk-unsplash.jpg') }}" alt="Food Image 1" class="w-full h-full object-cover hover:scale-105 transition duration-300">
                     </div>
-                    <div class="aspect-square bg-gradient-to-br from-yellow-200 to-orange-200 rounded-2xl shadow-md flex items-center justify-center">
-                        <span class="text-gray-500">Food Image 2</span>
+                    <div class="aspect-square rounded-2xl shadow-md overflow-hidden">
+                        <img src="{{ asset('sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg') }}" alt="Food Image 2" class="w-full h-full object-cover hover:scale-105 transition duration-300">
                     </div>
                 </div>
             </div>
@@ -113,11 +114,11 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Images Grid -->
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="aspect-square bg-gradient-to-br from-purple-200 to-pink-200 rounded-2xl shadow-md flex items-center justify-center">
-                        <span class="text-gray-500">Food Image 3</span>
+                    <div class="aspect-square rounded-2xl shadow-md overflow-hidden">
+                        <img src="{{ asset('fathul-abrar-T-qI_MI2EMA-unsplash.jpg') }}" alt="Food Image 3" class="w-full h-full object-cover hover:scale-105 transition duration-300">
                     </div>
-                    <div class="aspect-square bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2xl shadow-md flex items-center justify-center">
-                        <span class="text-gray-500">Food Image 4</span>
+                    <div class="aspect-square rounded-2xl shadow-md overflow-hidden">
+                        <img src="{{ asset('michele-blackwell-rAyCBQTH7ws-unsplash.jpg') }}" alt="Food Image 4" class="w-full h-full object-cover hover:scale-105 transition duration-300">
                     </div>
                 </div>
 
@@ -148,7 +149,7 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Text Content -->
-                <div class="lg:order-2">
+                <div>
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">MISI</h2>
                     <div class="space-y-4">
                         <p class="text-gray-600 leading-relaxed">
@@ -167,9 +168,9 @@
                 </div>
 
                 <!-- Single Large Image -->
-                <div class="lg:order-1">
-                    <div class="aspect-[4/3] bg-gradient-to-br from-green-300 to-blue-300 rounded-2xl shadow-lg flex items-center justify-center">
-                        <span class="text-gray-600 text-lg">Featured Food Image</span>
+                <div>
+                    <div class="aspect-[4/3] rounded-2xl shadow-lg overflow-hidden">
+                        <img src="{{ asset('sanket-shah-SVA7TyHxojY-unsplash.jpg') }}" alt="Featured Food Image" class="w-full h-full object-cover hover:scale-105 transition duration-300">
                     </div>
                 </div>
             </div>

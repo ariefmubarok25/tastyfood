@@ -63,8 +63,9 @@
     <!-- Hero Section -->
     <section class="relative h-[70vh] flex items-end">
         <!-- Background Image dengan Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-600 opacity-90">
-            <div class="w-full h-full bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute inset-0">
+            <img src="{{ asset('monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" alt="Galeri Kami Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
 
         <!-- Hero Content -->
@@ -84,20 +85,20 @@
                     <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
                         <!-- Slide 1 -->
                         <div class="w-full flex-shrink-0">
-                            <div class="h-96 bg-gradient-to-br from-yellow-300 to-orange-400 rounded-2xl flex items-center justify-center">
-                                <span class="text-white text-2xl font-semibold">Makanan Unggulan 1</span>
+                            <div class="h-96 overflow-hidden">
+                                <img src="{{ asset('fathul-abrar-T-qI_MI2EMA-unsplash.jpg') }}" alt="Makanan Unggulan 1" class="w-full h-full object-cover">
                             </div>
                         </div>
                         <!-- Slide 2 -->
                         <div class="w-full flex-shrink-0">
-                            <div class="h-96 bg-gradient-to-br from-green-300 to-blue-400 rounded-2xl flex items-center justify-center">
-                                <span class="text-white text-2xl font-semibold">Makanan Unggulan 2</span>
+                            <div class="h-96 overflow-hidden">
+                                <img src="{{ asset('eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg') }}" alt="Makanan Unggulan 2" class="w-full h-full object-cover">
                             </div>
                         </div>
                         <!-- Slide 3 -->
                         <div class="w-full flex-shrink-0">
-                            <div class="h-96 bg-gradient-to-br from-purple-300 to-pink-400 rounded-2xl flex items-center justify-center">
-                                <span class="text-white text-2xl font-semibold">Makanan Unggulan 3</span>
+                            <div class="h-96 overflow-hidden">
+                                <img src="{{ asset('brooke-lark-oaz0raysASk-unsplash.jpg') }}" alt="Makanan Unggulan 3" class="w-full h-full object-cover">
                             </div>
                         </div>
                     </div>
@@ -126,40 +127,40 @@
         <div class="container mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Gambar 1 -->
-                <div class="aspect-square bg-gradient-to-br from-yellow-200 to-orange-300 rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 flex items-center justify-center">
-                    <span class="text-gray-700 font-semibold">Salad Segar</span>
+                <div class="aspect-square rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 overflow-hidden">
+                    <img src="{{ asset('sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg') }}" alt="Salad Segar" class="w-full h-full object-cover">
                 </div>
                 <!-- Gambar 2 -->
-                <div class="aspect-square bg-gradient-to-br from-green-200 to-blue-300 rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 flex items-center justify-center">
-                    <span class="text-gray-700 font-semibold">Dessert Lezat</span>
+                <div class="aspect-square rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 overflow-hidden">
+                    <img src="{{ asset('jimmy-dean-Jvw3pxgeiZw-unsplash.jpg') }}" alt="Dessert Lezat" class="w-full h-full object-cover">
                 </div>
                 <!-- Gambar 3 -->
-                <div class="aspect-square bg-gradient-to-br from-purple-200 to-pink-300 rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 flex items-center justify-center">
-                    <span class="text-gray-700 font-semibold">Makanan Utama</span>
+                <div class="aspect-square rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 overflow-hidden">
+                    <img src="{{ asset('luisa-brimble-HvXEbkcXjSk-unsplash.jpg') }}" alt="Makanan Utama" class="w-full h-full object-cover">
                 </div>
                 <!-- Gambar 4 -->
-                <div class="aspect-square bg-gradient-to-br from-red-200 to-orange-300 rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 flex items-center justify-center">
-                    <span class="text-gray-700 font-semibold">Minuman Sehat</span>
+                <div class="aspect-square rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 overflow-hidden">
+                    <img src="{{ asset('michele-blackwell-rAyCBQTH7ws-unsplash.jpg') }}" alt="Minuman Sehat" class="w-full h-full object-cover">
                 </div>
                 <!-- Gambar 5 -->
-                <div class="aspect-square bg-gradient-to-br from-blue-200 to-cyan-300 rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 flex items-center justify-center">
-                    <span class="text-gray-700 font-semibold">Chef Memasak</span>
+                <div class="aspect-square rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 overflow-hidden">
+                    <img src="{{ asset('sanket-shah-SVA7TyHxojY-unsplash.jpg') }}" alt="Chef Memasak" class="w-full h-full object-cover">
                 </div>
                 <!-- Gambar 6 -->
-                <div class="aspect-square bg-gradient-to-br from-indigo-200 to-purple-300 rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 flex items-center justify-center">
-                    <span class="text-gray-700 font-semibold">Bahan Organik</span>
+                <div class="aspect-square rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 overflow-hidden">
+                    <img src="{{ asset('ella-olsson-mmnKI8kMxpc-unsplash.jpg') }}" alt="Bahan Organik" class="w-full h-full object-cover">
                 </div>
                 <!-- Gambar 7 -->
-                <div class="aspect-square bg-gradient-to-br from-emerald-200 to-teal-300 rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 flex items-center justify-center">
-                    <span class="text-gray-700 font-semibold">Menu Spesial</span>
+                <div class="aspect-square rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 overflow-hidden">
+                    <img src="{{ asset('jonathan-borba-Gkc_xM3VY34-unsplash.jpg') }}" alt="Menu Spesial" class="w-full h-full object-cover">
                 </div>
                 <!-- Gambar 8 -->
-                <div class="aspect-square bg-gradient-to-br from-amber-200 to-yellow-300 rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 flex items-center justify-center">
-                    <span class="text-gray-700 font-semibold">Sarapan Sehat</span>
+                <div class="aspect-square rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 overflow-hidden">
+                    <img src="{{ asset('mariana-medvedeva-iNwCO9ycBlc-unsplash.jpg') }}" alt="Sarapan Sehat" class="w-full h-full object-cover">
                 </div>
                 <!-- Gambar 9 -->
-                <div class="aspect-square bg-gradient-to-br from-rose-200 to-pink-300 rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 flex items-center justify-center">
-                    <span class="text-gray-700 font-semibold">Makanan Penutup</span>
+                <div class="aspect-square rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 overflow-hidden">
+                    <img src="{{ asset('monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" alt="Makanan Penutup" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>

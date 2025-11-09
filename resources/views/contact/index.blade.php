@@ -62,8 +62,9 @@
     <!-- Hero Section -->
     <section class="relative h-[70vh] flex items-center justify-center">
         <!-- Background Image dengan Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-600 opacity-90">
-            <div class="w-full h-full bg-gradient-to-r from-black/40 to-black/20"></div>
+        <div class="absolute inset-0">
+            <img src="{{ asset('monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" alt="Kontak Kami Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
         </div>
 
         <!-- Hero Content -->

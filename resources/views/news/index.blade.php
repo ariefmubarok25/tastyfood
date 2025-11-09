@@ -63,8 +63,9 @@
     <!-- Hero Section -->
     <section class="relative h-[70vh] flex items-end">
         <!-- Background Image dengan Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-br from-yellow-400 to-orange-600 opacity-90">
-            <div class="w-full h-full bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute inset-0">
+            <img src="{{ asset('monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" alt="Berita Kami Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
 
         <!-- Hero Content -->
@@ -81,8 +82,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-8 py-12">
                 <!-- Gambar Artikel Utama -->
                 <div class="flex justify-center lg:justify-start">
-                    <div class="w-full max-w-lg h-96 bg-gradient-to-br from-green-200 to-blue-200 rounded-2xl shadow-lg flex items-center justify-center">
-                        <span class="text-gray-600 text-lg">Gambar Makanan Khas Nusantara</span>
+                    <div class="w-full max-w-lg h-96 rounded-2xl shadow-lg overflow-hidden">
+                        <img src="{{ asset('eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg') }}" alt="Makanan Khas Nusantara" class="w-full h-full object-cover">
                     </div>
                 </div>
 
@@ -121,11 +122,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Berita Card 1 -->
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 hover:scale-105">
-                    <div class="h-48 bg-gradient-to-br from-yellow-200 to-orange-200 flex items-center justify-center">
-                        <span class="text-gray-600">Gambar Berita</span>
+                    <div class="h-48 overflow-hidden">
+                        <img src="{{ asset('brooke-lark-oaz0raysASk-unsplash.jpg') }}" alt="Berita 1" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 relative">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">LOREM IPSUM</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Tips Makan Sehat Harian</h3>
                         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
@@ -140,11 +141,11 @@
 
                 <!-- Berita Card 2 -->
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 hover:scale-105">
-                    <div class="h-48 bg-gradient-to-br from-green-200 to-blue-200 flex items-center justify-center">
-                        <span class="text-gray-600">Gambar Berita</span>
+                    <div class="h-48 overflow-hidden">
+                        <img src="{{ asset('sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg') }}" alt="Berita 2" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 relative">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">LOREM IPSUM</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Resep Salad Segar</h3>
                         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
@@ -159,11 +160,11 @@
 
                 <!-- Berita Card 3 -->
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 hover:scale-105">
-                    <div class="h-48 bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center">
-                        <span class="text-gray-600">Gambar Berita</span>
+                    <div class="h-48 overflow-hidden">
+                        <img src="{{ asset('jimmy-dean-Jvw3pxgeiZw-unsplash.jpg') }}" alt="Berita 3" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 relative">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">LOREM IPSUM</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Manfaat Organic Food</h3>
                         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
@@ -178,11 +179,11 @@
 
                 <!-- Berita Card 4 -->
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 hover:scale-105">
-                    <div class="h-48 bg-gradient-to-br from-blue-200 to-cyan-200 flex items-center justify-center">
-                        <span class="text-gray-600">Gambar Berita</span>
+                    <div class="h-48 overflow-hidden">
+                        <img src="{{ asset('luisa-brimble-HvXEbkcXjSk-unsplash.jpg') }}" alt="Berita 4" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 relative">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">LOREM IPSUM</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Trend Makanan 2025</h3>
                         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
@@ -197,11 +198,11 @@
 
                 <!-- Berita Card 5 -->
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 hover:scale-105">
-                    <div class="h-48 bg-gradient-to-br from-red-200 to-orange-200 flex items-center justify-center">
-                        <span class="text-gray-600">Gambar Berita</span>
+                    <div class="h-48 overflow-hidden">
+                        <img src="{{ asset('michele-blackwell-rAyCBQTH7ws-unsplash.jpg') }}" alt="Berita 5" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 relative">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">LOREM IPSUM</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Kuliner Nusantara</h3>
                         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
@@ -216,11 +217,11 @@
 
                 <!-- Berita Card 6 -->
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 hover:scale-105">
-                    <div class="h-48 bg-gradient-to-br from-indigo-200 to-purple-200 flex items-center justify-center">
-                        <span class="text-gray-600">Gambar Berita</span>
+                    <div class="h-48 overflow-hidden">
+                        <img src="{{ asset('sanket-shah-SVA7TyHxojY-unsplash.jpg') }}" alt="Berita 6" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 relative">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">LOREM IPSUM</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Healthy Lifestyle</h3>
                         <p class="text-gray-600 text-sm mb-4 leading-relaxed">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </p>
