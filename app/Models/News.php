@@ -25,7 +25,6 @@ class News extends Model
         'published_at' => 'datetime',
     ];
 
-    // Auto generate slug when creating news
     protected static function boot()
     {
         parent::boot();
@@ -43,26 +42,22 @@ class News extends Model
         });
     }
 
-    // Scope for published news
     public function scopePublished($query)
     {
         return $query->where('status', 'published')
                     ->where('published_at', '<=', now());
     }
 
-    // Scope for draft news
     public function scopeDraft($query)
     {
         return $query->where('status', 'draft');
     }
 
-    // Get readable published date
     public function getFormattedPublishedAtAttribute()
     {
         return $this->published_at?->format('d M Y');
     }
 
-    // Check if news is published
     public function getIsPublishedAttribute()
     {
         return $this->status === 'published' && $this->published_at <= now();

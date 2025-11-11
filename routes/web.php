@@ -6,10 +6,17 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ContactController;
+// Tambahkan import untuk controller admin
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
 // Route untuk Pengunjung
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Hapus atau comment route home yang duplicate
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::get('/tentang', [AboutController::class, 'index'])->name('about');
 Route::get('/berita', [NewsController::class, 'index'])->name('news');
 Route::get('/berita/{id}', [NewsController::class, 'show'])->name('news.show');
@@ -20,33 +27,26 @@ Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store
 // Route untuk Admin (prefix 'admin')
 Route::prefix('admin')->group(function () {
     // Dashboard Admin
-    Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     // Management Berita
-    Route::get('/berita', [App\Http\Controllers\Admin\NewsController::class, 'index'])->name('admin.news');
-    Route::get('/berita/create', [App\Http\Controllers\Admin\NewsController::class, 'create'])->name('admin.news.create');
-    Route::post('/berita', [App\Http\Controllers\Admin\NewsController::class, 'store'])->name('admin.news.store');
-    Route::get('/berita/{id}/edit', [App\Http\Controllers\Admin\NewsController::class, 'edit'])->name('admin.news.edit');
-    Route::put('/berita/{id}', [App\Http\Controllers\Admin\NewsController::class, 'update'])->name('admin.news.update');
-    Route::delete('/berita/{id}', [App\Http\Controllers\Admin\NewsController::class, 'destroy'])->name('admin.news.destroy');
+    Route::get('/berita', [AdminNewsController::class, 'index'])->name('admin.news');
+    Route::get('/berita/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/berita', [AdminNewsController::class, 'store'])->name('admin.news.store');
+    Route::get('/berita/{id}/edit', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('/berita/{id}', [AdminNewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/berita/{id}', [AdminNewsController::class, 'destroy'])->name('admin.news.destroy');
 
     // Management Galeri
-    Route::get('/galeri', [App\Http\Controllers\Admin\GalleryController::class, 'index'])->name('admin.gallery');
-    Route::get('/galeri/create', [App\Http\Controllers\Admin\GalleryController::class, 'create'])->name('admin.gallery.create');
-    Route::post('/galeri', [App\Http\Controllers\Admin\GalleryController::class, 'store'])->name('admin.gallery.store');
-    Route::get('/galeri/{id}/edit', [App\Http\Controllers\Admin\GalleryController::class, 'edit'])->name('admin.gallery.edit');
-    Route::put('/galeri/{id}', [App\Http\Controllers\Admin\GalleryController::class, 'update'])->name('admin.gallery.update');
-    Route::delete('/galeri/{id}', [App\Http\Controllers\Admin\GalleryController::class, 'destroy'])->name('admin.gallery.destroy');
+    Route::get('/galeri', [AdminGalleryController::class, 'index'])->name('admin.gallery');
+    Route::get('/galeri/create', [AdminGalleryController::class, 'create'])->name('admin.gallery.create');
+    Route::post('/galeri', [AdminGalleryController::class, 'store'])->name('admin.gallery.store');
+    Route::get('/galeri/{id}/edit', [AdminGalleryController::class, 'edit'])->name('admin.gallery.edit');
+    Route::put('/galeri/{id}', [AdminGalleryController::class, 'update'])->name('admin.gallery.update');
+    Route::delete('/galeri/{id}', [AdminGalleryController::class, 'destroy'])->name('admin.gallery.destroy');
 
     // Management Kontak (lihat pesan masuk)
-    Route::get('/kontak', [App\Http\Controllers\Admin\ContactController::class, 'index'])->name('admin.contact');
-    Route::get('/kontak/{id}', [App\Http\Controllers\Admin\ContactController::class, 'show'])->name('admin.contact.show');
-    Route::delete('/kontak/{id}', [App\Http\Controllers\Admin\ContactController::class, 'destroy'])->name('admin.contact.destroy');
-
-
+    Route::get('/kontak', [AdminContactController::class, 'index'])->name('admin.contact');
+    Route::get('/kontak/{id}', [AdminContactController::class, 'show'])->name('admin.contact.show');
+    Route::delete('/kontak/{id}', [AdminContactController::class, 'destroy'])->name('admin.contact.destroy');
 });
-
-$nama = 'dika';
-Route::view('/test', 'contoh.contohfile', [
-    'nama' => $nama
-]);
