@@ -12,11 +12,19 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
 // Route untuk Pengunjung
 Route::get('/', [HomeController::class, 'index'])->name('home');
-// Hapus atau comment route home yang duplicate
-// Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 Route::get('/tentang', [AboutController::class, 'index'])->name('about');
 Route::get('/berita', [NewsController::class, 'index'])->name('news');
 Route::get('/berita/{id}', [NewsController::class, 'show'])->name('news.show');
