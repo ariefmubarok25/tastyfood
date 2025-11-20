@@ -32,6 +32,10 @@ Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
 Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
 
+// Debug Routes untuk troubleshooting gambar
+Route::get('/debug-images', [HomeController::class, 'debugImages'])->name('debug.images');
+Route::get('/debug-news-images', [NewsController::class, 'debugImages'])->name('debug.news.images');
+
 // Route untuk Admin (prefix 'admin')
 Route::prefix('admin')->group(function () {
     // Dashboard Admin
