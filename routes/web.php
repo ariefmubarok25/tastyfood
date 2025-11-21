@@ -26,53 +26,29 @@ Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
 Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
 
-// Debug Routes
-Route::get('/debug-images', [HomeController::class, 'debugImages'])->name('debug.images');
-Route::get('/debug-news-images', [NewsController::class, 'debugImages'])->name('debug.news.images');
-Route::get('/debug-gallery-images', [GalleryController::class, 'debugImages'])->name('debug.gallery.images');
-
-// TEST ROUTES - Tambahkan ini
-Route::get('/test-gallery', [GalleryController::class, 'testGallery'])->name('test.gallery');
-Route::get('/check-gallery-data', function() {
-    try {
-        $galleryCount = \App\Models\Gallery::count();
-        return response()->json([
-            'database_connected' => true,
-            'gallery_table_exists' => true,
-            'total_gallery_items' => $galleryCount,
-            'active_gallery_items' => \App\Models\Gallery::where('is_active', true)->count(),
-            'sample_data' => \App\Models\Gallery::take(2)->get()
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'database_connected' => false,
-            'error' => $e->getMessage()
-        ]);
-    }
-});
-
 // Route untuk Admin
-Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Management Berita
-    Route::get('/berita', [AdminNewsController::class, 'index'])->name('admin.news');
-    Route::get('/berita/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
-    Route::post('/berita', [AdminNewsController::class, 'store'])->name('admin.news.store');
-    Route::get('/berita/{id}/edit', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
-    Route::put('/berita/{id}', [AdminNewsController::class, 'update'])->name('admin.news.update');
-    Route::delete('/berita/{id}', [AdminNewsController::class, 'destroy'])->name('admin.news.destroy');
+    Route::get('/news', [AdminNewsController::class, 'index'])->name('news');
+    Route::get('/news/create', [AdminNewsController::class, 'create'])->name('news.create');
+    Route::post('/news', [AdminNewsController::class, 'store'])->name('news.store');
+    Route::get('/news/{id}/edit', [AdminNewsController::class, 'edit'])->name('news.edit');
+    Route::put('/news/{id}', [AdminNewsController::class, 'update'])->name('news.update');
+    Route::delete('/news/{id}', [AdminNewsController::class, 'destroy'])->name('news.destroy');
 
     // Management Galeri
-    Route::get('/galeri', [AdminGalleryController::class, 'index'])->name('admin.gallery');
-    Route::get('/galeri/create', [AdminGalleryController::class, 'create'])->name('admin.gallery.create');
-    Route::post('/galeri', [AdminGalleryController::class, 'store'])->name('admin.gallery.store');
-    Route::get('/galeri/{id}/edit', [AdminGalleryController::class, 'edit'])->name('admin.gallery.edit');
-    Route::put('/galeri/{id}', [AdminGalleryController::class, 'update'])->name('admin.gallery.update');
-    Route::delete('/galeri/{id}', [AdminGalleryController::class, 'destroy'])->name('admin.gallery.destroy');
+    Route::get('/gallery', [AdminGalleryController::class, 'index'])->name('gallery');
+    Route::get('/gallery/create', [AdminGalleryController::class, 'create'])->name('gallery.create');
+    Route::post('/gallery', [AdminGalleryController::class, 'store'])->name('gallery.store');
+    Route::get('/gallery/{id}/edit', [AdminGalleryController::class, 'edit'])->name('gallery.edit');
+    Route::put('/gallery/{id}', [AdminGalleryController::class, 'update'])->name('gallery.update');
+    Route::delete('/gallery/{id}', [AdminGalleryController::class, 'destroy'])->name('gallery.destroy');
 
     // Management Kontak
-    Route::get('/kontak', [AdminContactController::class, 'index'])->name('admin.contact');
-    Route::get('/kontak/{id}', [AdminContactController::class, 'show'])->name('admin.contact.show');
-    Route::delete('/kontak/{id}', [AdminContactController::class, 'destroy'])->name('admin.contact.destroy');
+    Route::get('/contact', [AdminContactController::class, 'index'])->name('contact');
+    Route::get('/contact/{id}', [AdminContactController::class, 'show'])->name('contact.show');
+    Route::delete('/contact/{id}', [AdminContactController::class, 'destroy'])->name('contact.destroy');
 });
