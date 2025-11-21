@@ -18,6 +18,10 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
+    # FIX: Prevent directory listing for Laravel routes
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^(.*)/$ /$1 [R=301,L]
+
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f

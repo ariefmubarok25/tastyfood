@@ -71,7 +71,7 @@
                         <span class="font-bold text-gray-900">TASTY FOOD</span>
                     </h1>
                     <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
-                        Lorem ipsum dolor sit amet, consectetur dika adipiscing elit. Chika Meirisqia Ratu Mustika Sed haekal do eiusmod tempor firza incididunt ut labore et pratama dolore magna aliqua.
+                        Lorem ipsum dolor sit amet, consectetur dika adipiscing elit. Dika Haekal Firza Pratama Sed haekal do eiusmod tempor firza incididunt ut labore et pratama dolore magna aliqua.
                     </p>
                     <a href="{{ route('about') }}" class="bg-gray-900 text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition duration-300 inline-block">
                         TENTANG KAMI
@@ -95,7 +95,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">TENTANG KAMI</h2>
                 <div class="w-20 h-1 bg-primary mx-auto mb-8"></div>
                 <p class="text-lg text-gray-600 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dika Haekal Firza Pratama  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
             </div>
@@ -113,7 +113,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Lorem Ipsum</h3>
                     <p class="text-gray-600 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+                        Lorem ipsum dolor sit amet, consectetur Dika Haekal Firza Pratama  adipiscing elit sed do eiusmod tempor.
                     </p>
                 </div>
 
@@ -124,7 +124,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Lorem Ipsum</h3>
                     <p class="text-gray-600 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+                        Lorem Dika Haekal Firza Pratama ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
                     </p>
                 </div>
 
@@ -135,7 +135,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Lorem Ipsum</h3>
                     <p class="text-gray-600 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do Dika Haekal Firza Pratama eiusmod tempor.
                     </p>
                 </div>
 
@@ -146,67 +146,88 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Lorem Ipsum</h3>
                     <p class="text-gray-600 text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+                        Lorem ipsum dolor Dika Haekal Firza Pratama sit amet, consectetur adipiscing elit sed do eiusmod tempor.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Berita Kami Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">BERITA KAMI</h2>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Main News Card - Kiri -->
-                @if($featuredNews)
-                <div class="lg:col-span-2 bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-                    <div class="h-[500px] overflow-hidden flex items-center justify-center bg-gray-100">
-                        @if($featuredNews->image)
-                            <img src="{{ asset('storage/' . $featuredNews->image) }}" alt="{{ $featuredNews->title }}" class="w-full h-full object-cover">
+
+
+
+<!-- Berita Kami Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">BERITA KAMI</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Main News Card - Kiri (50%) -->
+            @if($featuredNews)
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                <div class="h-[500px] overflow-hidden flex items-center justify-center bg-gray-100">
+                    @if($featuredNews->image)
+                        <img src="{{ asset('news/' . $featuredNews->image) }}" alt="{{ $featuredNews->title }}" class="w-full h-full object-cover">
+                    @else
+                        <div class="bg-gradient-to-br from-green-200 to-blue-200 w-full h-full flex items-center justify-center">
+                            <span class="text-gray-600">No Image</span>
+                        </div>
+                    @endif
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">{{ $featuredNews->title }}</h3>
+                    <p class="text-gray-600 mb-4">
+                        {{ $featuredNews->excerpt ?? Str::limit(strip_tags($featuredNews->content), 150) }}
+                    </p>
+                    <a href="{{ route('news.show', $featuredNews->id) }}" class="text-primary font-semibold hover:text-orange-700 transition duration-300">
+                        Baca selengkapnya →
+                    </a>
+                </div>
+            </div>
+            @endif
+
+            <!-- Side News Cards - Kanan (50%) - 2x2 Grid dengan Gambar Besar & Deskripsi -->
+            <div class="grid grid-cols-2 gap-4">
+                @foreach($latestNews as $news)
+                <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden">
+                    <div class="h-40 overflow-hidden">
+                        @if($news->image)
+                            <img src="{{ asset('news/' . $news->image) }}" alt="{{ $news->title }}" class="w-full h-full object-cover hover:scale-105 transition duration-300">
                         @else
-                            <div class="bg-gradient-to-br from-green-200 to-blue-200 w-full h-full flex items-center justify-center">
-                                <span class="text-gray-600">No Image</span>
+                            <div class="bg-gradient-to-br from-gray-200 to-gray-300 w-full h-full flex items-center justify-center">
+                                <span class="text-gray-500 text-sm">No Image</span>
                             </div>
                         @endif
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">{{ $featuredNews->title }}</h3>
-                        <p class="text-gray-600 mb-4">
-                            {{ $featuredNews->excerpt ?? Str::limit(strip_tags($featuredNews->content), 150) }}
+                    <div class="p-3">
+                        <h4 class="font-bold text-gray-900 mb-2 text-sm line-clamp-2">{{ $news->title }}</h4>
+                        <p class="text-gray-600 text-xs mb-2 line-clamp-2 leading-relaxed">
+                            {{ Str::limit(strip_tags($news->excerpt ?? $news->content), 70) }}
                         </p>
-                        <a href="{{ route('news.show', $featuredNews->id) }}" class="text-primary font-semibold hover:text-orange-700 transition duration-300">
-                            Baca selengkapnya →
+                        <a href="{{ route('news.show', $news->id) }}" class="text-primary text-xs font-semibold hover:text-orange-700 inline-flex items-center">
+                            Baca selengkapnya
+                            <i class="fas fa-arrow-right ml-1 text-xs"></i>
                         </a>
                     </div>
                 </div>
-                @endif
-
-                <!-- Side News Cards - Kanan (2x2 Grid Horizontal) -->
-                <div class="grid grid-cols-2 gap-6">
-                    @foreach($latestNews as $news)
-                    <div class="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition duration-300">
-                        <div class="h-32 rounded-lg mb-4 overflow-hidden">
-                            @if($news->image)
-                                <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}" class="w-full h-full object-cover">
-                            @else
-                                <div class="bg-gradient-to-br from-gray-200 to-gray-300 w-full h-full flex items-center justify-center">
-                                    <span class="text-gray-500 text-sm">No Image</span>
-                                </div>
-                            @endif
-                        </div>
-                        <h4 class="font-bold text-gray-900 mb-2">{{ $news->title }}</h4>
-                        <p class="text-gray-600 text-sm mb-3">
-                            {{ Str::limit(strip_tags($news->excerpt ?? $news->content), 80) }}
-                        </p>
-                        <a href="{{ route('news.show', $news->id) }}" class="text-primary text-sm font-semibold hover:text-orange-700">Baca selengkapnya</a>
-                    </div>
-                    @endforeach
-                </div>
+                @endforeach
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Galeri Kami Section -->
     <section class="py-16 bg-gray-50">
@@ -216,7 +237,13 @@
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
                 @foreach($galleryImages as $image)
                 <div class="aspect-square rounded-xl overflow-hidden">
-                    <img src="{{ asset('storage/' . $image->image) }}" alt="{{ $image->image_alt_text }}" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                    @if($image->image)
+                        <img src="{{ asset('galeri/' . $image->image) }}" alt="{{ $image->image_alt_text ?? 'Gallery Image' }}" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                    @else
+                        <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">No Image</span>
+                        </div>
+                    @endif
                 </div>
                 @endforeach
             </div>
