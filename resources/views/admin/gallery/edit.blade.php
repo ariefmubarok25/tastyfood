@@ -3,48 +3,76 @@
 @section('title', 'Edit Gambar Galeri')
 
 @section('content')
-<div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-800">Edit Gambar</h1>
-    <p class="text-gray-600">Edit informasi gambar di galeri</p>
-</div>
+<h1>Edit Gambar Galeri</h1>
+<p>Edit gambar yang sudah ada.</p>
+<hr>
 
-<div class="bg-white rounded-lg shadow p-6">
-    <form action="{{ route('admin.gallery.update', $image['id']) }}" method="POST">
+<div>
+    <form action="{{ route('admin.gallery.update', $gallery->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
-        <div class="space-y-6">
-            <!-- Current Image Preview -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Gambar Saat Ini</label>
-                <div class="bg-gradient-to-br from-blue-400 to-purple-500 h-48 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-semibold text-lg">Gambar {{ $image['id'] }}</span>
-                </div>
-                <p class="text-sm text-gray-500 mt-2">* Untuk mengganti gambar, hapus yang lama dan upload baru</p>
-            </div>
+        <div style="margin-bottom: 10px;">
+            <label for="title">Judul Gambar *</label><br>
+            <input type="text" id="title" name="title" value="{{ old('title', $gallery->title) }}" required style="width: 100%;">
+            @error('title')
+                <small style="color: red;">{{ $message }}</small>
+            @enderror
+        </div>
 
-            <div>
-                <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Judul Gambar *</label>
-                <input type="text" id="title" name="title" value="{{ $image['title'] }}" required
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                       placeholder="Masukkan judul untuk gambar">
-            </div>
+        <div style="margin-bottom: 10px;">
+            <label for="description">Deskripsi</label><br>
+            <textarea id="description" name="description" rows="3" style="width: 100%;">{{ old('description', $gallery->description) }}</textarea>
+            @error('description')
+                <small style="color: red;">{{ $message }}</small>
+            @enderror
+        </div>
 
-            <div>
-                <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
-                <textarea id="description" name="description" rows="4"
-                          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                          placeholder="Masukkan deskripsi gambar (opsional)">{{ $image['description'] }}</textarea>
+        <div style="margin-bottom: 10px;">
+            <label for="image">Gambar</label><br>
+            @if($gallery->image)
+            <div style="margin-bottom: 5px;">
+                <img src="{{ asset('storage/galeri/' . $gallery->image) }}" alt="Gambar Saat Ini" style="width: 100px; height: 100px; object-fit: cover;">
+                <p><small>Gambar saat ini</small></p>
             </div>
+            @endif
+            <input type="file" id="image" name="image" accept="image/*">
+            @error('image')
+                <small style="color: red;">{{ $message }}</small>
+            @enderror
+            <p><small>Max: 2MB</small></p>
+        </div>
 
-            <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
-                <a href="{{ route('admin.gallery') }}" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-300">
-                    Batal
-                </a>
-                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                    Update Gambar
-                </button>
-            </div>
+        <div style="margin-bottom: 10px;">
+            <label for="image_alt">Alt Text Gambar</label><br>
+            <input type="text" id="image_alt" name="image_alt" value="{{ old('image_alt', $gallery->image_alt) }}" style="width: 100%;">
+            @error('image_alt')
+                <small style="color: red;">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <label for="order">Urutan Tampil</label><br>
+            <input type="number" id="order" name="order" value="{{ old('order', $gallery->order) }}" min="0" style="width: 50px;">
+            @error('order')
+                <small style="color: red;">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label for="is_active">Status *</label><br>
+            <select id="is_active" name="is_active" required>
+                <option value="1" {{ old('is_active', $gallery->is_active) == 1 ? 'selected' : '' }}>Aktif</option>
+                <option value="0" {{ old('is_active', $gallery->is_active) == 0 ? 'selected' : '' }}>Nonaktif</option>
+            </select>
+            @error('is_active')
+                <small style="color: red;">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div style="margin-top: 15px;">
+            <a href="{{ route('admin.gallery') }}" style="margin-right: 10px;">Batal</a>
+            <button type="submit">Update Gambar</button>
         </div>
     </form>
 </div>

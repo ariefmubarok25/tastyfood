@@ -3,57 +3,78 @@
 @section('title', 'Management Galeri')
 
 @section('content')
-<div class="mb-8">
-    <div class="flex justify-between items-center">
-        <div>
-            <h1 class="text-3xl font-bold text-gray-800">Management Galeri</h1>
-            <p class="text-gray-600">Kelola gambar dan foto untuk galeri</p>
-        </div>
-        <a href="{{ route('admin.gallery.create') }}" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
-            <i class="fas fa-plus mr-2"></i>Tambah Gambar
-        </a>
-    </div>
-</div>
+<h1>Management Galeri</h1>
+<p>Kelola gambar galeri website</p>
 
-<!-- Notifikasi -->
+<a href="{{ route('admin.gallery.create') }}">Tambah Gambar</a>
+
+<hr>
+
 @if(session('success'))
-<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-    {{ session('success') }}
-</div>
+<div style="border: 1px solid green; padding: 5px; margin-bottom: 10px;">{{ session('success') }}</div>
+@endif
+@if(session('error'))
+<div style="border: 1px solid red; padding: 5px; margin-bottom: 10px;">{{ session('error') }}</div>
 @endif
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-    @foreach($images as $image)
-    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-        <div class="bg-gradient-to-br from-blue-400 to-purple-500 h-48 flex items-center justify-center">
-            <span class="text-white font-semibold text-lg">Gambar {{ $image['id'] }}</span>
-        </div>
-        <div class="p-4">
-            <h3 class="font-semibold text-gray-800 mb-2">{{ $image['name'] }}</h3>
-            <p class="text-sm text-gray-600 mb-3">
-                Diupload: {{ \Carbon\Carbon::parse($image['uploaded_at'])->format('d M Y') }}
-            </p>
-            <div class="flex justify-between items-center">
-                <a href="{{ route('admin.gallery.edit', $image['id']) }}" class="text-blue-600 hover:text-blue-800 text-sm">
-                    <i class="fas fa-edit mr-1"></i>Edit
-                </a>
-                <form action="{{ route('admin.gallery.destroy', $image['id']) }}" method="POST">
+<table border="1" style="width: 100%; margin-top: 15px;">
+    <thead>
+        <tr>
+            <th style="padding: 5px;">Gambar</th>
+            <th style="padding: 5px;">Judul (Alt)</th>
+            <th style="padding: 5px;">Status</th>
+            <th style="padding: 5px;">Urutan</th>
+            <th style="padding: 5px;">Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse($galleries as $item)
+        <tr>
+            <td style="padding: 5px; text-align: center;">
+                @if($item->image)
+                    <img src="{{ asset('storage/galeri/' . $item->image) }}" alt="{{ $item->title }}" style="width: 50px; height: 50px; object-fit: cover;">
+                @else
+                    [N/A]
+                @endif
+            </td>
+            <td style="padding: 5px;">
+                {{ $item->title }}
+                <br><small>Alt: {{ $item->image_alt }}</small>
+                {{-- Deskripsi dihilangkan dari tabel untuk mempersingkat --}}
+            </td>
+            <td style="padding: 5px; text-align: center;">
+                {{ $item->is_active ? 'Aktif' : 'Nonaktif' }}
+            </td>
+            <td style="padding: 5px; text-align: center;">
+                {{ $item->order }}
+            </td>
+            <td style="padding: 5px; text-align: center;">
+                <a href="{{ route('admin.gallery.edit', $item->id) }}">Edit</a>
+                <form action="{{ route('admin.gallery.destroy', $item->id) }}" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-red-600 hover:text-red-800 text-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus gambar ini?')">
-                        <i class="fas fa-trash mr-1"></i>Hapus
-                    </button>
+                    <button type="submit" onclick="return confirm('Hapus gambar ini?')">Hapus</button>
                 </form>
-            </div>
-        </div>
-    </div>
-    @endforeach
-</div>
+            </td>
+        </tr>
+        @empty
+        <tr>
+            <td colspan="5" style="padding: 10px; text-align: center;">
+                Belum ada gambar galeri yang ditambahkan.
+            </td>
+        </tr>
+        @endforelse
+    </tbody>
+</table>
 
-<!-- Upload Area (placeholder untuk drag & drop) -->
-<div class="mt-8 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-    <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
-    <p class="text-gray-600 mb-2">Drag & drop gambar di sini untuk upload multiple</p>
-    <p class="text-sm text-gray-500">Support: JPG, PNG, GIF (Max. 2MB per gambar)</p>
+@if($galleries->count() > 0)
+<div style="margin-top: 10px; padding: 5px;">
+    <small>Menampilkan {{ $galleries->count() }} gambar</small>
+    @if(method_exists($galleries, 'links') && $galleries->hasPages())
+    <div>
+        {{ $galleries->links() }}
+    </div>
+    @endif
 </div>
+@endif
 @endsection
