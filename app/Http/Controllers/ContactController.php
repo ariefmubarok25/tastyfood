@@ -2,30 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+    // Tampilkan halaman form kontak untuk user
     public function index()
     {
-        return view('contact.index');
+        return view('contact.index'); // view untuk user, bukan admin!
     }
 
+    // Simpan pesan dari form Contact Us
     public function store(Request $request)
     {
-        // Validasi form
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'message' => 'required|string|min:10',
+        $request->validate([
+            'subject' => 'required',
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
         ]);
 
-        // Untuk sementara, kita simpan data di session
-        // Nanti bisa dikembangkan untuk menyimpan ke database atau mengirim email
-        session()->flash('success', 'Pesan Anda telah berhasil dikirim! Kami akan membalasnya secepatnya.');
+        Contact::create($request->all());
 
-        // Redirect kembali ke halaman kontak dengan pesan sukses
-        return redirect()->route('contact');
+        return redirect()->back()->with('success', 'Pesan berhasil dikirim!');
     }
 }

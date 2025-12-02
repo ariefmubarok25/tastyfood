@@ -3,53 +3,89 @@
 @section('title', 'Dashboard Admin')
 
 @section('content')
-<h1>Dashboard Admin</h1>
-<p>Selamat datang.</p>
-<hr>
-
-{{-- Statistik --}}
-<h2>Statistik</h2>
-<div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;">
-    Total Berita: <strong>{{ $stats['total_news'] }}</strong> |
-    Total Galeri: <strong>{{ $stats['total_galleries'] }}</strong> |
-    Pesan Masuk: <strong>{{ $stats['total_contacts'] }}</strong> |
-    Total Pengguna: <strong>{{ $stats['total_users'] }}</strong>
+<div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">Dashboard Admin</h1>
+    <p class="text-gray-600">Selamat datang di panel administrasi Tasty Food</p>
 </div>
 
-<div style="display: flex; gap: 20px;">
-    {{-- Berita Terbaru --}}
-    <div style="flex: 1; border: 1px solid #ccc; padding: 10px;">
-        <h3>Berita Terbaru</h3>
-        <ul>
+<!-- Statistics Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+
+    <!-- Total Berita -->
+    <div class="bg-white rounded-lg shadow p-6 w-full">
+        <div class="flex items-center">
+            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                <i class="fas fa-newspaper text-blue-600 text-xl"></i>
+            </div>
+            <div>
+                <p class="text-sm text-gray-600">Total Berita</p>
+                <p class="text-3xl font-bold">{{ $stats['total_news'] }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Galeri -->
+    <div class="bg-white rounded-lg shadow p-6 w-full">
+        <div class="flex items-center">
+            <div class="bg-green-100 p-3 rounded-full mr-4">
+                <i class="fas fa-images text-green-600 text-xl"></i>
+            </div>
+            <div>
+                <p class="text-sm text-gray-600">Total Galeri</p>
+                <p class="text-3xl font-bold">{{ $stats['total_galleries'] }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Latest Section (News + Contacts) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- Latest News -->
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold mb-4">Berita Terbaru</h2>
+
+        <div class="space-y-4">
             @foreach($latestNews as $news)
-            <li>
-                {{ $news->title }} ({{ $news->created_at->format('d M Y') }}) - Status: {{ ucfirst($news->status) }}
-            </li>
+            <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded">
+                <div>
+                    <h3 class="font-medium text-gray-800">{{ $news->title }}</h3>
+                    <p class="text-sm text-gray-600">{{ $news->created_at->format('d M Y') }}</p>
+                </div>
+                <span class="px-2 py-1 text-xs rounded-full
+                    {{ $news->status == 'published' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
+                    {{ $news->status }}
+                </span>
+            </div>
             @endforeach
-        </ul>
+        </div>
     </div>
 
-    {{-- Pesan Terbaru --}}
-    <div style="flex: 1; border: 1px solid #ccc; padding: 10px;">
-        <h3>Pesan Terbaru</h3>
-        <ul>
-            @foreach($latestMessages as $message)
-            <li>
-                Dari: **{{ $message->name }}** | Subjek: {{ $message->subject }} | Status: {{ ucfirst($message->status) }}
-            </li>
+    <!-- Latest Contacts -->
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold mb-4">Pesan Terbaru</h2>
+
+        <div class="space-y-4">
+            @foreach($latestContacts as $contact)
+            <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded">
+                <div>
+                    <h3 class="font-medium text-gray-800">{{ $contact->subject }}</h3>
+                    <p class="text-sm text-gray-600">
+                        Dari: {{ $contact->name }} • {{ $contact->created_at->format('d M Y') }}
+                    </p>
+                </div>
+
+                <a href="{{ route('admin.contacts.show', $contact->id) }}"
+                   class="px-3 py-1 text-xs bg-blue-100 text-blue-800 rounded">
+                    Detail
+                </a>
+            </div>
             @endforeach
-        </ul>
+        </div>
     </div>
+
 </div>
 
-<hr>
 
-{{-- Quick Actions --}}
-<h2>Aksi Cepat</h2>
-<div style="margin-top: 10px;">
-    <a href="{{ route('admin.news.create') }}">Tambah Berita</a> |
-    <a href="{{ route('admin.gallery.create') }}">Tambah Galeri</a> |
-    <a href="{{ route('admin.news') }}">Kelola Berita</a> |
-    <a href="{{ route('admin.contact') }}">Lihat Pesan</a>
-</div>
 @endsection

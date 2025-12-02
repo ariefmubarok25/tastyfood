@@ -89,24 +89,24 @@
                         <div>
                             <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
                             <input type="text" id="subject" name="subject" required
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition duration-300"
-                                   placeholder="Masukkan subject pesan">
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition duration-300"
+                                placeholder="Masukkan subject pesan">
                         </div>
 
                         <!-- Name Input -->
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
                             <input type="text" id="name" name="name" required
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition duration-300"
-                                   placeholder="Masukkan nama lengkap">
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition duration-300"
+                                placeholder="Masukkan nama lengkap">
                         </div>
 
                         <!-- Email Input -->
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
                             <input type="email" id="email" name="email" required
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition duration-300"
-                                   placeholder="Masukkan alamat email">
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition duration-300"
+                                placeholder="Masukkan alamat email">
                         </div>
                     </div>
 
@@ -114,8 +114,8 @@
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
                         <textarea id="message" name="message" rows="10" required
-                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition duration-300"
-                                  placeholder="Tulis pesan Anda di sini..."></textarea>
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition duration-300"
+                                placeholder="Tulis pesan Anda di sini..."></textarea>
                     </div>
                 </div>
 
@@ -165,21 +165,38 @@
     </section>
 
     <!-- Map Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden shadow-lg">
-                    <div class="h-96 flex items-center justify-center">
-                        <div class="text-center text-gray-600">
-                            <i class="fas fa-map text-4xl mb-4"></i>
-                            <p class="text-lg">Peta Lokasi Tasty Food</p>
-                            <p class="text-sm mt-2">Kota Bandung, Jawa Barat</p>
-                        </div>
-                    </div>
+<!-- Map Section -->
+<!-- Map Section -->
+
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="rounded-2xl overflow-hidden shadow-lg">
+
+            @if ($setting && $setting->map_embed_link)
+                <iframe
+                    src="{{ $setting->map_embed_link }}"
+                    width="100%"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            @else
+                <div class="p-6 bg-gray-100 text-center text-gray-600">
+                    Belum ada lokasi yang disetting.
                 </div>
-            </div>
+            @endif
+
         </div>
-    </section>
+    </div>
+</div>
+```
+
+</section>
+
+
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-12 pb-8">
@@ -319,13 +336,6 @@
             });
         });
 
-        // Form submission handling
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Here you can add form submission logic
-            alert('Pesan Anda telah berhasil dikirim! Kami akan membalas secepatnya.');
-            form.reset();
-        });
     </script>
 </body>
 </html>

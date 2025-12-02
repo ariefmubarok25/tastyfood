@@ -3,70 +3,81 @@
 @section('title', 'Tambah Gambar Galeri')
 
 @section('content')
-<h1>Tambah Gambar Galeri</h1>
-<p>Tambah gambar baru ke galeri.</p>
-<hr>
 
-<div>
+<div class="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-bold text-gray-700 mb-1">Tambah Gambar Galeri</h2>
+    <p class="text-gray-500 mb-6">Tambahkan gambar baru ke galeri website.</p>
+
     <form action="{{ route('admin.gallery.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <div style="margin-bottom: 10px;">
-            <label for="title">Judul Gambar *</label><br>
-            <input type="text" id="title" name="title" value="{{ old('title') }}" required style="width: 100%;">
+        {{-- Judul --}}
+        <div class="mb-5">
+            <label for="title" class="block font-medium text-gray-700 mb-1">Judul Gambar *</label>
+            <input type="text"
+                   id="title"
+                   name="title"
+                   value="{{ old('title') }}"
+                   required
+                   class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
             @error('title')
-                <small style="color: red;">Judul harus diisi.</small>
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
 
-        <div style="margin-bottom: 10px;">
-            <label for="description">Deskripsi</label><br>
-            <textarea id="description" name="description" rows="3" style="width: 100%;">{{ old('description') }}</textarea>
+        {{-- Deskripsi --}}
+        <div class="mb-5">
+            <label for="description" class="block font-medium text-gray-700 mb-1">Deskripsi</label>
+            <textarea id="description"
+                      name="description"
+                      rows="3"
+                      class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">{{ old('description') }}</textarea>
             @error('description')
-                <small style="color: red;">{{ $message }}</small>
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
 
-        <div style="margin-bottom: 10px;">
-            <label for="image">Gambar *</label><br>
-            <input type="file" id="image" name="image" required accept="image/*">
+        {{-- Gambar --}}
+        <div class="mb-5">
+            <label for="image" class="block font-medium text-gray-700 mb-1">Upload Gambar *</label>
+            <input type="file"
+                   id="image"
+                   name="image"
+                   accept="image/*"
+                   required
+                   class="w-full border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500">
+            <p class="text-gray-500 text-sm mt-1">Ukuran maksimal: 2MB</p>
             @error('image')
-                <small style="color: red;">Gambar harus diunggah.</small>
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
-            <p><small>Max: 2MB</small></p>
         </div>
 
-        <div style="margin-bottom: 10px;">
-            <label for="image_alt">Alt Text Gambar</label><br>
-            <input type="text" id="image_alt" name="image_alt" value="{{ old('image_alt') }}" style="width: 100%;">
+        {{-- Alt Text --}}
+        <div class="mb-5">
+            <label for="image_alt" class="block font-medium text-gray-700 mb-1">Alt Text (teks alternatif)</label>
+            <input type="text"
+                   id="image_alt"
+                   name="image_alt"
+                   value="{{ old('image_alt') }}"
+                   class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
             @error('image_alt')
-                <small style="color: red;">{{ $message }}</small>
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
 
-        <div style="margin-bottom: 10px;">
-            <label for="order">Urutan Tampil</label>
-            <input type="number" id="order" name="order" value="{{ old('order', 0) }}" min="0" style="width: 50px;">
-            @error('order')
-                <small style="color: red;">{{ $message }}</small>
-            @enderror
-        </div>
+        {{-- Tombol --}}
+        <div class="flex items-center justify-end gap-3 mt-6">
+            <a href="{{ route('admin.gallery') }}"
+               class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-100">
+                Batal
+            </a>
 
-        <div style="margin-bottom: 20px;">
-            <label for="is_active">Status *</label>
-            <select id="is_active" name="is_active" required>
-                <option value="1" {{ old('is_active', 1) == 1 ? 'selected' : '' }}>Aktif</option>
-                <option value="0" {{ old('is_active') == 0 ? 'selected' : '' }}>Nonaktif</option>
-            </select>
-            @error('is_active')
-                <small style="color: red;">Status harus dipilih.</small>
-            @enderror
-        </div>
-
-        <div style="margin-top: 15px;">
-            <a href="{{ route('admin.gallery') }}" style="margin-right: 10px;">Batal</a>
-            <button type="submit">Simpan Gambar</button>
+            <button type="submit"
+                    class="px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">
+                Simpan Gambar
+            </button>
         </div>
     </form>
 </div>
+
 @endsection

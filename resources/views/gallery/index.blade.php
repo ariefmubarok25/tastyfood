@@ -225,7 +225,7 @@
             <div class="gallery-grid">
                 @foreach($galleryImages as $image)
                 <div class="gallery-item">
-                    <img src="{{ asset('storage/galeri/' . $image->image) }}"
+                    <img src="{{ asset('storage/gallery/' . $image->image) }}"
                          alt="{{ $image->title }}">
                 </div>
                 @endforeach
@@ -235,4 +235,4 @@
 </body>
 </html>
 
-tes koneksi halaman admin geleri ke halamn galeri
+

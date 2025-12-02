@@ -14,28 +14,7 @@ class Gallery extends Model
         'description',
         'image',
         'image_alt',
-        'order',
-        'is_active',
     ];
 
-    protected $casts = [
-        'is_active' => 'boolean',
-        'order' => 'integer',
-    ];
 
-    /**
-     * Scope untuk galeri yang aktif
-     */
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', true);
-    }
-
-    /**
-     * Scope untuk urutan
-     */
-    public function scopeOrdered($query)
-    {
-        return $query->orderBy('order')->orderBy('created_at', 'desc');
-    }
 }

@@ -14,13 +14,21 @@
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-4">
                     <a href="{{ route('admin.dashboard') }}" class="text-xl font-bold">Admin Panel</a>
+
                     <nav class="hidden md:flex space-x-4">
                         <a href="{{ route('admin.dashboard') }}" class="hover:bg-blue-700 px-3 py-1 rounded">Dashboard</a>
+
                         <a href="{{ route('admin.news') }}" class="hover:bg-blue-700 px-3 py-1 rounded">Berita</a>
+
                         <a href="{{ route('admin.gallery') }}" class="hover:bg-blue-700 px-3 py-1 rounded">Galeri</a>
-                        <a href="{{ route('admin.contact') }}" class="hover:bg-blue-700 px-3 py-1 rounded">Kontak</a>
+
+                        <a href="{{ route('admin.location.index') }}" class="hover:bg-blue-700 px-3 py-1 rounded">Lokasi</a>
+
+                        <!-- MENU PESAN (BARU DITAMBAHKAN) -->
+                        <a href="{{ route('admin.contacts') }}" class="hover:bg-blue-700 px-3 py-1 rounded">Pesan</a>
                     </nav>
                 </div>
+
                 <div class="flex items-center space-x-4">
                     <a href="{{ route('home') }}" class="hover:bg-blue-700 px-3 py-1 rounded" target="_blank">
                         <i class="fas fa-external-link-alt mr-2"></i>Lihat Website
@@ -34,12 +42,5 @@
     <main class="container mx-auto px-4 py-8">
         @yield('content')
     </main>
-
-    <!-- Admin Footer -->
-    <footer class="bg-gray-800 text-white mt-12">
-        <div class="container mx-auto px-4 py-4 text-center">
-            <p>&copy; 2024 Admin Panel. All rights reserved.</p>
-        </div>
-    </footer>
 </body>
 </html>

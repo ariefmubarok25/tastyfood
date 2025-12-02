@@ -12,11 +12,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        // Ambil data gallery dari database yang aktif
-        $galleryImages = Gallery::where('is_active', true)
-                               ->orderBy('order', 'asc')
-                               ->orderBy('created_at', 'desc')
-                               ->get();
+        // Ambil semua gallery berdasarkan created_at terbaru
+        $galleryImages = Gallery::orderBy('created_at', 'desc')->get();
 
         // Ambil 3 gambar pertama untuk carousel
         $carouselImages = $galleryImages->take(3);
@@ -34,16 +31,13 @@ class GalleryController extends Controller
         return response()->json([
             'message' => 'Debug Gallery Images from Database',
             'total_items' => $galleryData->count(),
-            'active_items' => $galleryData->where('is_active', true)->count(),
             'data' => $galleryData->map(function($item) {
                 return [
                     'id' => $item->id,
                     'title' => $item->title,
                     'image' => $item->image,
                     'description' => $item->description,
-                    'is_active' => $item->is_active,
-                    'order' => $item->order,
-                    'image_url' => asset('storage/gallery/' . $item->image), // Sesuaikan path
+                    'image_url' => asset('storage/gallery/' . $item->image),
                     'created_at' => $item->created_at
                 ];
             })
