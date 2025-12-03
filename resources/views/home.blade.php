@@ -168,7 +168,7 @@
             <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
                 <div class="h-[500px] overflow-hidden flex items-center justify-center bg-gray-100">
                     @if($featuredNews->image)
-                        <img src="{{ asset('news/' . $featuredNews->image) }}" alt="{{ $featuredNews->title }}" class="w-full h-full object-cover">
+                        <img src="{{ asset('storage/news/' . $featuredNews->image) }}" alt="{{ $featuredNews->title }}" class="w-full h-full object-cover">
                     @else
                         <div class="bg-gradient-to-br from-green-200 to-blue-200 w-full h-full flex items-center justify-center">
                             <span class="text-gray-600">No Image</span>
