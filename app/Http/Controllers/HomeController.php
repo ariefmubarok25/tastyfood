@@ -9,7 +9,7 @@ use App\Models\Gallery;
 class HomeController extends Controller
 {
     public function index()
-    {
+    {   
         // Featured news untuk section Berita Kami
         $featuredNews = News::orderBy('created_at', 'desc')->first();
 
@@ -22,9 +22,14 @@ class HomeController extends Controller
             ->get();
 
         // Gallery images
-        $galleryImages = Gallery::orderBy('created_at', 'desc')->take(6)->get();
+             $galleries = Gallery::orderBy('created_at', 'asc')->take(4)->get(); // ambil 4 data (sesuai layout)
+        
+            $galleryImages = Gallery::orderBy('created_at', 'desc')->take(6)->get();
 
-        return view('home', compact('featuredNews', 'latestNews', 'galleryImages'));
+           
+        return view('home', compact('featuredNews', 'latestNews', 'galleryImages', 'galleries'));
+
+
     }
 
     // Method untuk debug gambar
