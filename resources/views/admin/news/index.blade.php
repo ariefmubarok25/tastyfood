@@ -36,8 +36,8 @@
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gambar</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Konten</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                 </tr>
             </thead>
@@ -61,7 +61,11 @@
                     {{-- Judul --}}
                     <td class="px-6 py-4">
                         <div class="text-sm font-medium text-gray-900">{{ $item->title }}</div>
-                        <div class="text-sm text-gray-500">{{ Str::limit(strip_tags($item->excerpt), 100) }}</div>
+                    </td>
+
+                     {{-- Konten --}}
+                    <td class="px-6 py-4">
+                        <div class="text-sm text-gray-500">{{ Str::limit(strip_tags($item->content), 100) }}</div>
                     </td>
 
                     {{-- Status --}}
@@ -70,11 +74,6 @@
                             {{ $item->status == 'published' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                             {{ ucfirst($item->status) }}
                         </span>
-                    </td>
-
-                    {{-- Tanggal --}}
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $item->created_at->format('d M Y') }}
                     </td>
 
                     {{-- Aksi tanpa icon --}}

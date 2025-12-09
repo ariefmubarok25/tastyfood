@@ -24,7 +24,7 @@ class GalleryController extends Controller
         $validated = $request->validate([
             'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image'       => 'required|image|mimes:jpeg,png,jpg,gif|max:4096',
+            'image'       => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
             'image_alt'   => 'nullable|string|max:255',
         ]);
 
@@ -56,7 +56,7 @@ class GalleryController extends Controller
         $validated = $request->validate([
             'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
             'image_alt'   => 'nullable|string|max:255',
         ]);
 

@@ -46,7 +46,6 @@
                    accept="image/*"
                    required
                    class="w-full border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500">
-            <p class="text-gray-500 text-sm mt-1">Ukuran maksimal: 2MB</p>
             @error('image')
                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror

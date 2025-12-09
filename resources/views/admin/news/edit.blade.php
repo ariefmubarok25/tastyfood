@@ -49,12 +49,9 @@
 
             <input type="file" id="image" name="image" accept="image/*"
                    class="block w-full mt-2 text-gray-700">
-
             @error('image')
                 <p class="text-red-500 text-sm mt-1">Format gambar tidak valid.</p>
             @enderror
-
-            <p class="text-sm text-gray-500 mt-1">Max: 2MB</p>
         </div>
 
         {{-- Status --}}

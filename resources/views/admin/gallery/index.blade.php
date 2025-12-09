@@ -39,7 +39,10 @@
                         Gambar
                     </th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Judul / Alt
+                        Judul
+                    </th>
+                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Deskripsi
                     </th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Aksi
@@ -67,7 +70,11 @@
                     {{-- Judul --}}
                     <td class="px-6 py-4">
                         <div class="text-sm font-medium text-gray-900">{{ $item->title }}</div>
-                        <div class="text-sm text-gray-500">Alt: {{ $item->image_alt ?? '-' }}</div>
+                    </td>
+
+                     {{-- Konten --}}
+                    <td class="px-6 py-4">
+                        <div class="text-sm text-gray-500">{{ Str::limit(strip_tags($item->description), 100) }}</div>
                     </td>
 
                     {{-- Aksi --}}

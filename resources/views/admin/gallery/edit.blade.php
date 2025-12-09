@@ -44,7 +44,7 @@
 
             @if($gallery->image)
                 <div class="mb-3">
-                    <img src="{{ asset('storage/galeri/' . $gallery->image) }}"
+                    <img src="{{ asset('storage/gallery/' . $gallery->image) }}"
                          alt="{{ $gallery->title }}"
                          class="w-28 h-28 object-cover rounded border">
                     <p class="text-sm text-gray-500 mt-1">Gambar saat ini</p>
@@ -57,7 +57,6 @@
                    name="image"
                    accept="image/*"
                    class="w-full border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500">
-            <p class="text-gray-500 text-sm mt-1">Ukuran maksimal: 2MB</p>
             @error('image')
                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror

@@ -5,24 +5,22 @@
 @section('content')
 
 {{-- ================= HERO SECTION ================= --}}
-<section class="relative h-[70vh] flex items-end">
-    <div class="absolute inset-0">
-        <img src="{{ asset('monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" 
-             alt="Galeri Kami Background" 
-             class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black/60"></div>
-    </div>
-    <div class="relative z-10 text-white pb-16 container mx-auto px-4">
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-wide">
-            GALERI KAMI
-        </h1>
-    </div>
-</section>
+   <section class="relative h-[35vh] md:h-[70vh] flex items-center justify-center">
+        <div class="absolute inset-0">
+            <img src="{{ asset('storage/user/monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
 
+       <div class="relative z-10 text-white container mx-auto px-4 pl-20">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-widest">
+                GALERI KAMI
+            </h1>
+        </div>
+    </section>
 
 {{-- ================= CAROUSEL SECTION ================= --}}
-<section class="py-16 bg-gray-light">
-    <div class="container mx-auto px-4">
+<section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-8">
         <div class="relative max-w-6xl mx-auto">
 
             <div class="overflow-hidden rounded-2xl">
@@ -38,8 +36,6 @@
             </div>
 
             {{-- Prev Button --}}
-          
-            {{-- Prev Button --}}
             <button id="prev-btn"
                 class="absolute top-1/2 -left-7 -translate-y-1/2
                 bg-white shadow-xl w-14 h-14 rounded-full flex items-center justify-center
@@ -49,7 +45,6 @@
                     stroke-width="3" stroke="black" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
-
             </button>
 
             <button id="next-btn"
@@ -76,13 +71,13 @@
 {{-- ================= GALLERY GRID SECTION ================= --}}
 <section class="py-12 px-10 bg-white">
     <div class="container mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
             @foreach($galleryImages as $image)
                 <div class="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
                     <img src="{{ asset('storage/gallery/' . $image->image) }}"
                          alt="{{ $image->title }}"
-                         class="w-full h-80 object-cover hover:scale-105 transition duration-500">
+                         class="w-full aspect-square h-full md:h-80 object-cover hover:scale-105 transition duration-500">
                 </div>
             @endforeach
 

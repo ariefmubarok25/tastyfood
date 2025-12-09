@@ -12,15 +12,14 @@
 <section class="relative h-screen flex items-center overflow-hidden bg-gray-100">
 
     <!-- Background Right 50% -->
-    <div class="absolute top-0 right-0 w-1/2 h-full">
-        <img src="{{ asset('Picsart_25-12-04_15-14-44-633.png') }}"
-             class="w-full h-full object-cover object-top"
+    <div class="absolute top-0 right-0 md:w-1/2 h-full">
+        <img src="{{ asset('storage/user/Picsart_25-12-04_15-14-44-633.png') }}"
+             class="w-full h-full object-cover object-top brightness-75"
              alt="Hero Image">
     </div>
 
     <!-- Text Content -->
-    <div class="relative z-10 container mx-auto px-4">
-        <div class="max-w-xl text-black -ml-12">
+    <div class="text-white md:text-black relative z-10 container mx-auto px-20">
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-light mb-4">
             ____<br>
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-light mb-4">
@@ -44,7 +43,7 @@
 
 
 <!-- Tentang Kami Section -->
-<section class="py-16 bg-white">
+<section class="py-16 pb-40 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center max-w-3xl mx-auto">
             <h2 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">TENTANG KAMI</h2>
@@ -53,42 +52,64 @@
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae mauris vel massa fermentum tincidunt. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
             </p>
             <div class="w-20 h-1 bg-primary mx-auto mb-8"></div>
-            <h2 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">_________</h2>
+            <h2 class="text-3xl md:text-3xl font-bold text-gray-900 mb-4">__________</h2>
 
         </div>
     </div>
 </section>
 
-<section class="py-20 bg-gray-900 bg-cover bg-center"
-    style="background-image: url('{{ asset('Group 70@2x.png') }}')">
+<section
+    class="pt-24 md:pt-32 pb-20 -mt-24 md:-mt-32
+           bg-gray-900 bg-cover bg-top"
+    style="background-image: url('{{ asset('storage/user/Group 70@2x.png') }}')">
 
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+    <div class="container mx-auto px-6 md:px-4">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
             @foreach ($galleries as $item)
-            <div class="bg-white rounded-2xl shadow-lg p-6 pt-20 text-center relative hover:shadow-xl transition duration-300">
+            <div
+                class="bg-white rounded-2xl shadow-lg
+                       p-6 pt-24
+                       md:pt-20
+                       text-center
+                       relative
+                       hover:shadow-xl
+                       transition duration-300">
 
-                {{-- Foto lingkaran mengambang --}}
-                <div class="w-40 h-40 rounded-full overflow-hidden absolute top-[-5rem] left-1/2 -translate-x-1/2 shadow-lg">
-                    <img src="{{ asset('storage/gallery/' . $item->image) }}" class="w-full h-full object-cover">
+                {{-- FOTO BULAT --}}
+                <div
+                    class="w-28 h-28
+                           sm:w-32 sm:h-32
+                           md:w-40 md:h-40
+                           rounded-full overflow-hidden
+                           absolute
+                           -top-4 sm:-top-20 md:-top-20
+                           left-1/2 -translate-x-1/2
+                           shadow-lg bg-white">
+
+                    <img
+                        src="{{ asset('storage/gallery/' . $item->image) }}"
+                        class="w-full h-full object-cover">
                 </div>
 
-                {{-- Judul --}}
-                <h3 class="text-xl font-bold text-gray-900 mb-3 mt-2">
+                {{-- JUDUL --}}
+                <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-3 mt-2">
                     {{ $item->title }}
                 </h3>
 
-                {{-- Deskripsi --}}
-                <p class="text-gray-600 text-sm">
+                {{-- DESKRIPSI --}}
+                <p class="text-gray-600 text-sm leading-relaxed">
                     {{ $item->description }}
                 </p>
-
             </div>
             @endforeach
 
         </div>
+
     </div>
 </section>
+
 
 
 
@@ -126,7 +147,7 @@
                 <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden">
                     <div class="h-40 overflow-hidden">
                         @if($news->image)
-                            <img src="{{ asset('news/' . $news->image) }}" alt="{{ $news->title }}" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                            <img src="{{ asset('storage/news/' . $news->image) }}" alt="{{ $news->title }}" class="w-full h-full object-cover hover:scale-105 transition duration-300">
                         @else
                             <div class="bg-gradient-to-br from-gray-200 to-gray-300 w-full h-full flex items-center justify-center">
                                 <span class="text-gray-500 text-sm">No Image</span>

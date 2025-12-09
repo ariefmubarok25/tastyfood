@@ -40,7 +40,6 @@
             @error('image')
                 <p class="text-red-500 text-sm mt-1">File gambar tidak valid.</p>
             @enderror
-            <p class="text-sm text-gray-500 mt-1">Max: 2MB</p>
         </div>
 
         {{-- Status --}}
