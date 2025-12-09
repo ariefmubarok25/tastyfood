@@ -35,15 +35,23 @@
         <table class="min-w-full">
             <thead class="bg-gray-50">
                 <tr>
+                    {{-- No --}}
+                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        No.
+                    </th>
+
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Gambar
                     </th>
+
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Judul
                     </th>
-                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Deskripsi
                     </th>
+
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Aksi
                     </th>
@@ -51,15 +59,21 @@
             </thead>
 
             <tbody class="bg-white divide-y divide-gray-200">
-                @forelse($galleries as $item)
+                @forelse ($galleries as $index => $item)
                 <tr class="hover:bg-gray-50">
+
+                    {{-- No --}}
+                    <td class="px-4 py-4 text-center text-sm text-gray-600">
+                        {{ $galleries->firstItem() + $index }}
+                    </td>
 
                     {{-- Gambar --}}
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if($item->image)
-                            <img src="{{ asset('storage/gallery/' . $item->image) }}"
-                                 alt="{{ $item->title }}"
-                                 class="w-16 h-16 object-cover rounded">
+                            <img
+                                src="{{ asset('storage/gallery/' . $item->image) }}"
+                                alt="{{ $item->title }}"
+                                class="w-16 h-16 object-cover rounded">
                         @else
                             <div class="w-16 h-16 bg-gray-200 rounded flex items-center justify-center text-gray-400">
                                 Tidak ada gambar
@@ -69,12 +83,16 @@
 
                     {{-- Judul --}}
                     <td class="px-6 py-4">
-                        <div class="text-sm font-medium text-gray-900">{{ $item->title }}</div>
+                        <div class="text-sm font-medium text-gray-900">
+                            {{ $item->title }}
+                        </div>
                     </td>
 
-                     {{-- Konten --}}
+                    {{-- Deskripsi --}}
                     <td class="px-6 py-4">
-                        <div class="text-sm text-gray-500">{{ Str::limit(strip_tags($item->description), 100) }}</div>
+                        <div class="text-sm text-gray-500">
+                            {{ \Illuminate\Support\Str::limit(strip_tags($item->description), 100) }}
+                        </div>
                     </td>
 
                     {{-- Aksi --}}
@@ -89,19 +107,19 @@
                                   method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
-                                <button onclick="return confirm('Hapus gambar ini?')"
-                                        class="text-red-600 hover:text-red-900">
+                                <button
+                                    onclick="return confirm('Hapus gambar ini?')"
+                                    class="text-red-600 hover:text-red-900">
                                     Hapus
                                 </button>
                             </form>
-
                         </div>
                     </td>
 
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="3" class="px-6 py-4 text-center text-gray-500">
+                    <td colspan="5" class="px-6 py-4 text-center text-gray-500">
                         Belum ada gambar galeri.
                     </td>
                 </tr>
@@ -111,10 +129,5 @@
     </div>
 </div>
 
-@if($galleries->count() > 0)
-<div class="mt-6 text-sm text-gray-700">
-    Menampilkan {{ $galleries->count() }} gambar
-</div>
-@endif
 
 @endsection

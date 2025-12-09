@@ -25,24 +25,29 @@ class GalleryController extends Controller
             'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
             'image'       => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'image_alt'   => 'nullable|string|max:255',
         ]);
 
-        $gallery = new Gallery();
-        $gallery->title = $validated['title'];
-        $gallery->description = $validated['description'];
-        $gallery->image_alt = $validated['image_alt'];
+        try {
+            $gallery = new Gallery();
+            $gallery->title = $validated['title'];
+            $gallery->description = $validated['description'] ?? null;
 
-        // Upload to storage/gallery/
-        if ($request->hasFile('image')) {
-            $filename = time() . '_' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('storage/gallery'), $filename);
-            $gallery->image = $filename;
+            // Upload image
+            if ($request->hasFile('image')) {
+                $filename = time() . '_' . $request->file('image')->getClientOriginalName();
+                $request->file('image')->move(public_path('storage/gallery'), $filename);
+                $gallery->image = $filename;
+            }
+
+            $gallery->save();
+
+            return redirect()
+                ->route('admin.gallery')
+                ->with('success', 'Gambar galeri berhasil ditambahkan.');
+
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
         }
-
-        $gallery->save();
-
-        return redirect()->route('admin.gallery')->with('success', 'Gambar berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -57,39 +62,52 @@ class GalleryController extends Controller
             'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
             'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'image_alt'   => 'nullable|string|max:255',
         ]);
 
-        $gallery = Gallery::findOrFail($id);
+        try {
+            $gallery = Gallery::findOrFail($id);
+            $gallery->title = $validated['title'];
+            $gallery->description = $validated['description'] ?? null;
 
-        $gallery->title = $validated['title'];
-        $gallery->description = $validated['description'];
-        $gallery->image_alt = $validated['image_alt'];
+            if ($request->hasFile('image')) {
+                // Hapus gambar lama
+                if ($gallery->image && file_exists(public_path('storage/gallery/' . $gallery->image))) {
+                    unlink(public_path('storage/gallery/' . $gallery->image));
+                }
 
-        if ($request->hasFile('image')) {
-            // delete old image
-            $oldPath = public_path('storage/gallery/' . $gallery->image);
-            if (file_exists($oldPath)) unlink($oldPath);
+                $filename = time() . '_' . $request->file('image')->getClientOriginalName();
+                $request->file('image')->move(public_path('storage/gallery'), $filename);
+                $gallery->image = $filename;
+            }
 
-            $filename = time() . '_' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('storage/gallery'), $filename);
-            $gallery->image = $filename;
+            $gallery->save();
+
+            return redirect()
+                ->route('admin.gallery')
+                ->with('success', 'Galeri berhasil diperbarui.');
+
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
         }
-
-        $gallery->save();
-
-        return redirect()->route('admin.gallery')->with('success', 'Galeri berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
-        $gallery = Gallery::findOrFail($id);
+        try {
+            $gallery = Gallery::findOrFail($id);
 
-        $oldPath = public_path('storage/gallery/' . $gallery->image);
-        if (file_exists($oldPath)) unlink($oldPath);
+            if ($gallery->image && file_exists(public_path('storage/gallery/' . $gallery->image))) {
+                unlink(public_path('storage/gallery/' . $gallery->image));
+            }
 
-        $gallery->delete();
+            $gallery->delete();
 
-        return redirect()->route('admin.gallery')->with('success', 'Galeri berhasil dihapus!');
+            return redirect()
+                ->route('admin.gallery')
+                ->with('success', 'Galeri berhasil dihapus.');
+
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 }

@@ -135,7 +135,8 @@
                     <p class="text-gray-600 mb-4">
                         {{ $featuredNews->excerpt ?? Str::limit(strip_tags($featuredNews->content), 150) }}
                     </p>
-                    <a href="{{ route('news.show', $featuredNews->id) }}" class="text-primary font-semibold hover:text-orange-700 transition duration-300">
+                    <a href="{{ route('news.show', $featuredNews->id) }}" 
+                    class="font-semibold text-orange-500 hover:text-orange-600 transition">
                         Baca selengkapnya →
                     </a>
                 </div>
@@ -159,7 +160,8 @@
                         <p class="text-gray-600 text-xs mb-2 line-clamp-2 leading-relaxed">
                             {{ Str::limit(strip_tags($news->excerpt ?? $news->content), 70) }}
                         </p>
-                        <a href="{{ route('news.show', $news->id) }}" class="text-primary text-xs font-semibold hover:text-orange-700 inline-flex items-center">
+                        <a href="{{ route('news.show', $news->id) }}" 
+                        class="font-semibold text-orange-500 hover:text-orange-600 transition">
                             Baca selengkapnya
                             <i class="fas fa-arrow-right ml-1 text-xs"></i>
                         </a>

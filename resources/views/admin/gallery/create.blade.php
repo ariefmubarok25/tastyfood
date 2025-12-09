@@ -13,13 +13,17 @@
 
         {{-- Judul --}}
         <div class="mb-5">
-            <label for="title" class="block font-medium text-gray-700 mb-1">Judul Gambar *</label>
-            <input type="text"
-                   id="title"
-                   name="title"
-                   value="{{ old('title') }}"
-                   required
-                   class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <label for="title" class="block font-medium text-gray-700 mb-1">
+                Judul Gambar <span class="text-red-500">*</span>
+            </label>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value="{{ old('title') }}"
+                required
+                class="w-full border-gray-300 rounded-lg shadow-sm
+                       focus:ring-blue-500 focus:border-blue-500">
             @error('title')
                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -27,11 +31,16 @@
 
         {{-- Deskripsi --}}
         <div class="mb-5">
-            <label for="description" class="block font-medium text-gray-700 mb-1">Deskripsi</label>
-            <textarea id="description"
-                      name="description"
-                      rows="3"
-                      class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">{{ old('description') }}</textarea>
+            <label for="description" class="block font-medium text-gray-700 mb-1">
+                Deskripsi
+            </label>
+            <textarea
+                id="description"
+                name="description"
+                rows="3"
+                class="w-full border-gray-300 rounded-lg shadow-sm
+                       focus:ring-blue-500 focus:border-blue-500"
+            >{{ old('description') }}</textarea>
             @error('description')
                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -39,27 +48,18 @@
 
         {{-- Gambar --}}
         <div class="mb-5">
-            <label for="image" class="block font-medium text-gray-700 mb-1">Upload Gambar *</label>
-            <input type="file"
-                   id="image"
-                   name="image"
-                   accept="image/*"
-                   required
-                   class="w-full border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500">
+            <label for="image" class="block font-medium text-gray-700 mb-1">
+                Upload Gambar <span class="text-red-500">*</span>
+            </label>
+            <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                required
+                class="w-full border-gray-300 rounded-lg bg-white
+                       focus:ring-blue-500 focus:border-blue-500">
             @error('image')
-                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-            @enderror
-        </div>
-
-        {{-- Alt Text --}}
-        <div class="mb-5">
-            <label for="image_alt" class="block font-medium text-gray-700 mb-1">Alt Text (teks alternatif)</label>
-            <input type="text"
-                   id="image_alt"
-                   name="image_alt"
-                   value="{{ old('image_alt') }}"
-                   class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            @error('image_alt')
                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>

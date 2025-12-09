@@ -14,13 +14,17 @@
 
         {{-- Judul --}}
         <div class="mb-5">
-            <label for="title" class="block font-medium text-gray-700 mb-1">Judul Gambar *</label>
-            <input type="text"
-                   id="title"
-                   name="title"
-                   value="{{ old('title', $gallery->title) }}"
-                   required
-                   class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <label for="title" class="block font-medium text-gray-700 mb-1">
+                Judul Gambar <span class="text-red-500">*</span>
+            </label>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value="{{ old('title', $gallery->title) }}"
+                required
+                class="w-full border-gray-300 rounded-lg shadow-sm
+                       focus:ring-blue-500 focus:border-blue-500">
             @error('title')
                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -28,11 +32,16 @@
 
         {{-- Deskripsi --}}
         <div class="mb-5">
-            <label for="description" class="block font-medium text-gray-700 mb-1">Deskripsi</label>
-            <textarea id="description"
-                      name="description"
-                      rows="3"
-                      class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">{{ old('description', $gallery->description) }}</textarea>
+            <label for="description" class="block font-medium text-gray-700 mb-1">
+                Deskripsi
+            </label>
+            <textarea
+                id="description"
+                name="description"
+                rows="3"
+                class="w-full border-gray-300 rounded-lg shadow-sm
+                       focus:ring-blue-500 focus:border-blue-500"
+            >{{ old('description', $gallery->description) }}</textarea>
             @error('description')
                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -40,37 +49,33 @@
 
         {{-- Preview Gambar --}}
         <div class="mb-5">
-            <label for="image" class="block font-medium text-gray-700 mb-2">Gambar Saat Ini</label>
+            <label class="block font-medium text-gray-700 mb-2">
+                Gambar Saat Ini
+            </label>
 
             @if($gallery->image)
                 <div class="mb-3">
-                    <img src="{{ asset('storage/gallery/' . $gallery->image) }}"
-                         alt="{{ $gallery->title }}"
-                         class="w-28 h-28 object-cover rounded border">
-                    <p class="text-sm text-gray-500 mt-1">Gambar saat ini</p>
+                    <img
+                        src="{{ asset('storage/gallery/' . $gallery->image) }}"
+                        alt="{{ $gallery->title }}"
+                        class="w-28 h-28 object-cover rounded border">
+                    <p class="text-sm text-gray-500 mt-1">
+                        Gambar saat ini
+                    </p>
                 </div>
             @endif
 
-            <label class="block font-medium text-gray-700 mb-1">Ubah Gambar (opsional)</label>
-            <input type="file"
-                   id="image"
-                   name="image"
-                   accept="image/*"
-                   class="w-full border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500">
+            <label for="image" class="block font-medium text-gray-700 mb-1">
+                Ubah Gambar (opsional)
+            </label>
+            <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                class="w-full border-gray-300 rounded-lg bg-white
+                       focus:ring-blue-500 focus:border-blue-500">
             @error('image')
-                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-            @enderror
-        </div>
-
-        {{-- Alt Text --}}
-        <div class="mb-5">
-            <label for="image_alt" class="block font-medium text-gray-700 mb-1">Alt Text</label>
-            <input type="text"
-                   id="image_alt"
-                   name="image_alt"
-                   value="{{ old('image_alt', $gallery->image_alt) }}"
-                   class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            @error('image_alt')
                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>

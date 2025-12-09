@@ -34,17 +34,33 @@
         <table class="min-w-full">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gambar</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Konten</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        No.
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Gambar
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Judul
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Konten
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Aksi
+                    </th>
                 </tr>
             </thead>
 
             <tbody class="bg-white divide-y divide-gray-200">
                 @forelse($news as $item)
                 <tr class="hover:bg-gray-50">
+
+                    {{-- No --}}
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                        {{ $loop->iteration }}
+                    </td>
+
                     {{-- Gambar --}}
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if($item->image)
@@ -52,7 +68,7 @@
                                  alt="{{ $item->title }}"
                                  class="w-16 h-16 object-cover rounded">
                         @else
-                            <div class="w-16 h-16 bg-gray-200 rounded flex items-center justify-center text-gray-400">
+                            <div class="w-16 h-16 bg-gray-200 rounded flex items-center justify-center text-gray-400 text-xs">
                                 Tidak ada gambar
                             </div>
                         @endif
@@ -60,33 +76,27 @@
 
                     {{-- Judul --}}
                     <td class="px-6 py-4">
-                        <div class="text-sm font-medium text-gray-900">{{ $item->title }}</div>
+                        <div class="text-sm font-medium text-gray-900">
+                            {{ $item->title }}
+                        </div>
                     </td>
 
-                     {{-- Konten --}}
+                    {{-- Konten --}}
                     <td class="px-6 py-4">
-                        <div class="text-sm text-gray-500">{{ Str::limit(strip_tags($item->content), 100) }}</div>
+                        <div class="text-sm text-gray-500">
+                            {{ \Illuminate\Support\Str::limit(strip_tags($item->content), 100) }}
+                        </div>
                     </td>
 
-                    {{-- Status --}}
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
-                            {{ $item->status == 'published' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                            {{ ucfirst($item->status) }}
-                        </span>
-                    </td>
-
-                    {{-- Aksi tanpa icon --}}
+                    {{-- Aksi --}}
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <div class="flex space-x-3">
 
-                            {{-- Edit --}}
                             <a href="{{ route('admin.news.edit', $item->id) }}"
                                class="text-blue-600 hover:text-blue-900">
                                 Edit
                             </a>
 
-                            {{-- Delete --}}
                             <form action="{{ route('admin.news.destroy', $item->id) }}"
                                   method="POST"
                                   class="inline">
@@ -115,11 +125,6 @@
     </div>
 </div>
 
-{{-- Info jumlah --}}
-@if($news->count() > 0)
-<div class="mt-6 text-sm text-gray-700">
-    Menampilkan {{ $news->count() }} berita
-</div>
-@endif
+
 
 @endsection
